@@ -1,3 +1,5 @@
+import Card from "../UI/Card";
+import MealItem from "./MealItem/MealItem";
 const dummyMeals = [
   {
     id: "m1",
@@ -35,15 +37,13 @@ const dummyMeals = [
 const AvailableMeals = () => {
   return (
     <section className="max-w-4xl mx-auto py-8">
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {dummyMeals.map((meal) => (
-          <li key={meal.id} className="bg-white p-4 rounded shadow">
-            <h3 className="text-lg font-bold">{meal.name}</h3>
-            <p className="text-gray-600">{meal.description}</p>
-            <p className="text-xl font-bold">${meal.price.toFixed(2)}</p>
-          </li>
-        ))}
-      </ul>
+      <Card>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {dummyMeals.map((meal) => (
+            <MealItem key={meal.id} meal={meal} />
+          ))}
+        </ul>
+      </Card>
     </section>
   );
 };
