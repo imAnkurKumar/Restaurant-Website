@@ -1,3 +1,4 @@
+import MealItemForm from "./MealItemForm";
 const MealItem = (props) => {
   return (
     <li key={props.meal.id}>
@@ -5,6 +6,7 @@ const MealItem = (props) => {
         <h3 className="text-lg font-bold">{props.meal.name}</h3>
         <p className="text-gray-600">{props.meal.description}</p>
         <p className="text-xl font-bold">${props.meal.price.toFixed(2)}</p>
+        <MealItemForm />
       </div>
     </li>
   );
