@@ -1,21 +1,31 @@
+import { useRef } from "react";
 import Input from "../../UI/Input";
 
 const MealItemForm = (props) => {
+  const amountInputRef = useRef();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredAmount = +amountInputRef.current.value;
+
+    props.onAddToCart(enteredAmount);
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <Input
+        ref={amountInputRef}
         label="Amount"
         input={{
           type: "number",
+          defaultValue: "1",
           min: "1",
           max: "5",
-          step: "1",
-          defaultValue: "1",
         }}
       />
-      <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-        +Add
-      </button>
+
+      <button>+ Add</button>
     </form>
   );
 };

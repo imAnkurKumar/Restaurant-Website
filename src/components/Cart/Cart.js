@@ -1,17 +1,15 @@
 import Modal from "../UI/Modal";
-
+import { useContext } from "react";
+import CartContext from "../../store/cart-context";
 const Cart = (props) => {
+  const cartCtx = useContext(CartContext);
+
   const cartItems = (
     <ul>
-      {[
-        {
-          id: "c1",
-          name: "Sushi",
-          amount: 2,
-          price: 12.99,
-        },
-      ].map((item) => (
-        <li>{item.name}</li>
+      {cartCtx.items.map((item) => (
+        <li key={item.id}>
+          {item.name} x {item.amount}
+        </li>
       ))}
     </ul>
   );
@@ -21,7 +19,7 @@ const Cart = (props) => {
       {cartItems}
       <div className="flex justify-between items-center mt-4">
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>${cartCtx.totalAmount.toFixed(2)}</span>
       </div>
       <div className="flex justify-end mt-4 space-x-2">
         <button
